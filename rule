@@ -1,0 +1,16 @@
+#!/bin/bash
+#
+# USAGE 
+#
+# rule file "rule"
+#
+# Apply the rule "rule" on file file
+#
+# AUTHOR : Bernard Uguen 
+#
+# bernard.uguen@univ-rennes1.fr
+#
+#echo $2
+cat $1 | sed "$2" > temp
+cat temp > $1 
+rm temp
