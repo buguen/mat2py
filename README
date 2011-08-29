@@ -2,7 +2,7 @@ mat2py is a simple bash script intended to help the conversion of an
 
 existing matlab file (.m) into a python file exploiting the suite (numpy + scipy + matplotlib)  
 
-Warning : the result is not directly usable but reduce a bit the editing work 
+Warning : the result is not directly usable but reduces a bit the editing work 
 
 new rules based on sed regular expression can be added in the mat2py file 
 
@@ -13,6 +13,9 @@ assuming myprog.m exists
 
 will produce a file myprog.py with various matlab syntax element substituted with their python equivalent 
 
+
+	mat2py exploit the bash command : rule 
+
 The python packages used are : 
 
 	import numpy as np 	
@@ -20,4 +23,4 @@ The python packages used are :
         import scipy.linalg as la 
         import matplotlib.pyplot as plt 
 
-
+You are welcome to commit any new rule you are judging interesting to add
