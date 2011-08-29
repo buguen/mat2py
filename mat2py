@@ -1,0 +1,60 @@
+#!/bin/bash
+echo "# -*- coding:Utf-8 -*-" >temp
+echo "import numpy as np" >> temp
+echo "import scipy as sp" >> temp
+echo "import scipy.linalg as la" >> temp
+echo "import matplotlib.pyplot as plt" >> temp
+cat $1.m >> temp
+cat temp > $1.py 
+rule $1.py "s/%/#/"  # comments 
+#cat temp1  | sed "s/function\(.*=[ \t]\)(\(.*\)/def \2: # output \1/" >temp3
+rule $1.py  "s/endfunction//" 
+rule $1.py  's/function\(.*\)/def \1:/' 
+rule $1.py  "s/;//" 
+rule $1.py  "s/find(/np\.nonzero(/g" 
+rule $1.py  "s/pi/np.pi/g" 
+rule $1.py  "s/\.\*/\*/g" 
+rule $1.py  "s/sqrt(/np\.sqrt(/g" 
+rule $1.py  "s/log(/np\.log(/g" 
+rule $1.py  "s/zeros(/np\.zeros(/g" 
+rule $1.py  "s/ones(/np\.ones(/g" 
+rule $1.py  "s/length/np\.len/g" 
+rule $1.py  "s/then/:/g" 
+rule $1.py  "s/if\(.*\)/if \1:/" 
+rule $1.py  "s/elseif/elif/g" 
+rule $1.py  "s/else/else:/g" 
+rule $1.py  "s/||/ or /g" 
+rule $1.py  "s/&&/ and /g" 
+rule $1.py  "s/~/ not /g" 
+rule $1.py  "s/%i/1j/g" 
+rule $1.py  "s/error[ \t]*(\(.*\))/print \1/" 
+rule $1.py  "s/cos(/np\.cos(/" 
+rule $1.py  "s/log(/np\.log(/" 
+rule $1.py  "s/exp(/np\.exp(/" 
+rule $1.py  "s/log10(/np\.log10(/" 
+rule $1.py  "s/cos(/np\.cos(/" 
+rule $1.py  "s/sin(/np\.sin(/" 
+rule $1.py  "s/tan(/np\.tan(/" 
+rule $1.py  "s/acos(/np\.acos(/" 
+rule $1.py  "s/asin(/np\.asin(/" 
+rule $1.py  "s/atan(/np\.atan(/" 
+rule $1.py  "s/abs(/np\.abs(/" 
+rule $1.py  "s/sum(/np\.sum(/" 
+rule $1.py  "s/rem(/np\.fmod(/" 
+rule $1.py  "s/round(/np\.round(/" 
+rule $1.py  "s/ceil(/np\.ceil(/" 
+rule $1.py  "s/floor(/np\.floor(/" 
+rule $1.py  "s/subplot(/plt.subplot(/" 
+rule $1.py  "s/plot(/plt.plot(/" 
+rule $1.py  "s/endif//" 
+rule $1.py  "s/endswitch//" 
+rule $1.py  "s/^[ \t]*end[ \t]*//" 
+rule $1.py  "s/zeros(\(.*\)/np.zeros((\1))/" 
+rule $1.py  "s/ones(\(.*\)/np.ones((\1))/" 
+rule $1.py  "s/NaN/np.nan/"
+rule $1.py  "s/Inf/np.inf/"
+rule $1.py  "s/isnan(/np.isnan(/"
+rule $1.py  "s/isreal(/np.isreal(/"
+rule $1.py  "s/\.\//\//g" 
+rule $1.py  "s/\.^/\*\*/g" 
+rule $1.py  "s/(:)/\[:\]/g" 
