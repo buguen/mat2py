@@ -1,3 +1,6 @@
+Matlab to Numpy 
+---------------
+
 mat2py is a simple bash script intended to help the conversion of an 
 
 existing matlab file (.m) into a python file exploiting the suite (numpy + scipy + matplotlib)  
